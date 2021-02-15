@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/app-marvel/static/css/main.29ee5ddf.chunk.css",
+    "main.js": "/app-marvel/static/js/main.79340b6a.chunk.js",
+    "main.js.map": "/app-marvel/static/js/main.79340b6a.chunk.js.map",
+    "runtime-main.js": "/app-marvel/static/js/runtime-main.2929edd0.js",
+    "runtime-main.js.map": "/app-marvel/static/js/runtime-main.2929edd0.js.map",
+    "static/js/2.764ed186.chunk.js": "/app-marvel/static/js/2.764ed186.chunk.js",
+    "static/js/2.764ed186.chunk.js.map": "/app-marvel/static/js/2.764ed186.chunk.js.map",
+    "index.html": "/app-marvel/index.html",
+    "static/css/main.29ee5ddf.chunk.css.map": "/app-marvel/static/css/main.29ee5ddf.chunk.css.map",
+    "static/js/2.764ed186.chunk.js.LICENSE.txt": "/app-marvel/static/js/2.764ed186.chunk.js.LICENSE.txt",
+    "static/media/iron-man.44b59cef.svg": "/app-marvel/static/media/iron-man.44b59cef.svg",
+    "static/media/marvel.69550def.png": "/app-marvel/static/media/marvel.69550def.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2929edd0.js",
+    "static/js/2.764ed186.chunk.js",
+    "static/css/main.29ee5ddf.chunk.css",
+    "static/js/main.79340b6a.chunk.js"
+  ]
+}
