@@ -48,10 +48,6 @@ const Home: React.FC = () => {
   async function comicsSearch(text: any): Promise<void> {
     const { value } = text.target;
 
-    if (!value) {
-      setInputError('Digite o título do quadrinho');
-      return;
-    }
     try {
       if (value.length) {
         await setTimeout(() => {
@@ -59,7 +55,6 @@ const Home: React.FC = () => {
         }, 500);
       } else {
         setComicsData([]);
-        setInputError('Erro na busca por esse quadrinho');
       }
       setInputError('');
       setComicName('');

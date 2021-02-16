@@ -60,7 +60,7 @@ export const Comics = styled.div`
     background: #1c1c1c;
     border-radius: 5px;
     width: 100%;
-    padding: 24px;
+    padding: 24px 12px 24px;
     display: block;
     text-decoration: none;
 
@@ -90,6 +90,7 @@ export const Comics = styled.div`
         background: ${shade(0.2, '#EEAD0E')};
       }
     }
+
   }
 
     img {
