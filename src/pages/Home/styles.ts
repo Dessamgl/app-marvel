@@ -28,7 +28,7 @@ export const Form = styled.form<FormProps>`
     border: 0;
     color: #b5b5b5;
     background-color: #1c1c1c;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
     border: 2px solid #1c1c1c;
 
     ${props =>
@@ -43,6 +43,21 @@ export const Form = styled.form<FormProps>`
 
     &::placeholder {
       color: #b5b5b5;
+    }
+  }
+
+  button {
+    width: 210px;
+    height: 70px;
+    background: #eead0e;
+    border-radius: 0px 5px 5px 0px;
+    border: 0;
+    color: #1c1c1c;
+    font-weight: bold;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: ${shade(0.2, '#eead0e')};
     }
   }
 `;
@@ -60,7 +75,7 @@ export const Comics = styled.div`
     background: #1c1c1c;
     border-radius: 5px;
     width: 100%;
-    padding: 24px 12px 24px;
+    padding: 16px 24px;
     display: block;
     text-decoration: none;
 
@@ -112,4 +127,5 @@ export const Comics = styled.div`
       margin-left: auto;
       color: #cbcbcdd6;
     }
-  }`;
+  }
+  `;

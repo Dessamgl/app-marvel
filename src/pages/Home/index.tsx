@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback, FormEvent } from 'react';
 import api from '../../services/api';
 
 import Modal from '../../components/Modal';
@@ -19,49 +19,39 @@ export interface Comic {
 }
 
 const Home: React.FC = () => {
-  const [comicName, setComicName] = useState('');
+  const [inputComicName, setInputComicName] = useState('');
   const [comicsData, setComicsData] = useState<Comic[]>([]);
   const [card, setCard] = useState<Comic>();
   const [inputError, setInputError] = useState('');
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    if (!comicsData || comicName) {
-      loadComics();
+  async function getComics(event: FormEvent<HTMLFormElement>): Promise<void> {
+    event.preventDefault();
+
+    if (!inputComicName) {
+      setInputError('Digite o título do quadrinho em inglês');
+      return;
     }
-  }, [comicName]);
-
-  async function loadComics(): Promise<void> {
-    const response = await api.get('v1/public/comics', {
-      params: {
-        titleStartsWith: comicName,
-      },
-    });
-
-    const { results } = response.data.data;
-    setComicsData(results);
-  }
-  const showModal = useCallback(() => {
-    setShow(!show);
-  }, [show]);
-
-  async function comicsSearch(text: any): Promise<void> {
-    const { value } = text.target;
 
     try {
-      if (value.length) {
-        await setTimeout(() => {
-          setComicName(value);
-        }, 500);
-      } else {
-        setComicsData([]);
-      }
+      const response = await api.get('v1/public/comics', {
+        params: {
+          titleStartsWith: inputComicName,
+        },
+      });
+
+      const { results } = response.data.data;
+      setComicsData(results as Comic[]);
+      setInputComicName('');
       setInputError('');
-      setComicName('');
     } catch (err) {
       setInputError('Erro na busca por esse quadrinho');
     }
   }
+
+  const showModal = useCallback(() => {
+    setShow(!show);
+  }, [show]);
 
   const showModalWithData = useCallback(
     (data: Comic) => {
@@ -79,12 +69,14 @@ const Home: React.FC = () => {
         alt="Marvel"
       />
       <Title>Explore os quadrinhos da Marvel</Title>
-      <Form hasError={!!inputError} onSubmit={comicsSearch}>
+      <Form hasError={!!inputError} onSubmit={getComics}>
         <input
-          onChange={comicsSearch}
+          onChange={event => setInputComicName(event.target.value)}
           placeholder="Digite o título do quadrinho"
           type="text"
         />
+
+        <button type="submit">Pesquisar</button>
       </Form>
 
       {inputError && <Error>{inputError}</Error>}

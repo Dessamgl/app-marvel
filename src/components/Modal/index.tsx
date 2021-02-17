@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { ButtonHTMLAttributes } from 'react';
 import { Comic } from '../../pages/Home';
-
-import './styles.css';
+import { Container, Content, Footer } from './styles';
 
 interface ModalProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   show: boolean;
@@ -15,40 +14,44 @@ const Modal: React.FC<ModalProps> = ({ show, comic, ...rest }) => {
   }
 
   return (
-    <div className={`modal-overlay ${show ? 'active' : ''}`}>
-      <div className="modal" id="modal">
-        <h1>{comic?.title}</h1>
-        <div className="container">
-          {comic?.images[0]?.path && (
-            <div>
-              <img
-                src={`${comic.images[0]?.path}.${comic.images[0]?.extension}`}
-                alt={comic.title}
-              />
-            </div>
-          )}
-          <div className="content">
-            <div>
-              <strong>Descrição:</strong>
-              {!comic?.description
-                ? 'Quadrinho sem descrição'
-                : comic.description}
-            </div>
-            <div>
-              <strong>Número de páginas:</strong>
-              {!comic?.pageCount || comic?.pageCount === 0
-                ? 'Quadrinho sem número de páginas'
-                : comic.pageCount}
-            </div>
+    <Container>
+      <div className={`modal-overlay ${show ? 'active' : ''}`}>
+        <div className="modal" id="modal">
+          <div className="container">
+            <h1>{comic?.title}</h1>
+
+            <Content>
+              <div className="comic-image">
+                {comic?.images[0]?.path && (
+                  <img
+                    src={`${comic.images[0]?.path}.${comic.images[0]?.extension}`}
+                    alt={comic.title}
+                  />
+                )}
+              </div>
+
+              <div className="comic-details">
+                <div>
+                  <strong>Páginas: </strong>
+                  <span>{comic?.pageCount ? ' -' : comic?.pageCount}</span>
+                </div>
+
+                <div>
+                  <strong>Descrição: </strong>
+                  <span>{!comic?.description ? ' -' : comic.description}</span>
+                </div>
+              </div>
+            </Content>
           </div>
-        </div>
-        <div className="actions">
-          <button className="toggle-button" type="button" {...rest}>
-            fechar
-          </button>
+
+          <Footer>
+            <button className="toggle-button" type="button" {...rest}>
+              Fechar
+            </button>
+          </Footer>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
