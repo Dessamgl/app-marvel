@@ -26,6 +26,7 @@ export const Container = styled.div`
     height: 100%;
     max-width: 960px;
     background-color: rgba(0, 0, 0, 0.7);
+    padding-right: 40px;
 
     position: fixed;
     top: 0;
@@ -62,10 +63,43 @@ export const Container = styled.div`
       margin-bottom: 20px;
     }
   }
+
+  @media (max-width: 520px) {
+    .Container {
+      h1 {
+        width: 250px;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
 `;
 
 export const Content = styled.div`
   display: flex;
+
+  @media (max-width: 520px) {
+    flex-direction: column;
+
+    .comic-image img {
+      width: 150px;
+      display: flex;
+      margin: 0 auto;
+    }
+
+    .comic-details {
+      margin: 20px 0;
+
+      div {
+        height: 20px;
+      }
+
+      div + div {
+        height: 120px;
+      }
+    }
+  }
 
   img {
     width: 250px;
@@ -113,6 +147,10 @@ export const Footer = styled.div`
   display: flex;
   flex: 1;
   justify-content: flex-end;
+
+  @media (max-width: 520px) {
+    justify-content: center;
+  }
 
   padding: 8px 16px;
 

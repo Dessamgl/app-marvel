@@ -5,6 +5,10 @@ interface FormProps {
   hasError: boolean;
 }
 
+interface FormEmail {
+  hasOpened: boolean;
+}
+
 export const Title = styled.h1`
   font-size: 48px;
   color: #b5b5b5;
@@ -87,6 +91,10 @@ export const Comics = styled.div`
       margin-top: 16px;
     }
 
+    &.selected-card {
+      border: 1px solid #fff;
+    }
+
     &:hover {
       transform: translateX(10px);
     }
@@ -105,9 +113,7 @@ export const Comics = styled.div`
         background: ${shade(0.2, '#EEAD0E')};
       }
     }
-
   }
-
     img {
       width: 100px;
       height: 150px;
@@ -128,4 +134,96 @@ export const Comics = styled.div`
       color: #cbcbcdd6;
     }
   }
+
+  @media (max-width: 500px) {
+      li {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+        height: 370px;
+
+        img {
+          margin: 0 auto;
+        }
+
+        strong {
+          margin: 10px 0;
+        }
+
+        button {
+          margin: 0 auto;
+          width: 100px;
+          height: 50px
+        }
+      }
+    }
   `;
+
+export const ButtonFloat = styled.button<FormEmail>`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #002034;
+  border-radius: 5px;
+  border: 0;
+  color: #fff;
+
+  transition: all 0.2s;
+
+  input,
+  .send-email {
+    display: none;
+    visibility: hidden;
+  }
+
+  ${props =>
+    props.hasOpened &&
+    css`
+      width: 300px;
+      justify-content: space-evenly;
+      padding: 0 16px;
+      cursor: default;
+
+      .open-box-email {
+        display: none;
+        visibility: hidden;
+      }
+
+      input,
+      .send-email {
+        display: inline-block;
+        visibility: visible;
+      }
+
+      input {
+        border-radius: 5px;
+        border: 0;
+        height: 33px;
+        padding: 0 8px;
+      }
+
+      .send-email {
+        cursor: pointer;
+        &:hover {
+          color: ${shade(0.2, '#fff')};
+        }
+      }
+    `}
+
+  &:hover {
+    background: ${shade(0.2, '#002034')};
+  }
+
+  svg {
+    font-size: 30px;
+  }
+`;
